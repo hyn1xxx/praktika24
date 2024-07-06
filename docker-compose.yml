@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  db:
+    image: sqlite
+    volumes:
+      - .db
+
+  bot:
+    image: dockerbot:latest
+    environment:
+      DB_HOST: db
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
